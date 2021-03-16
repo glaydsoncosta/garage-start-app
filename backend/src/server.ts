@@ -1,4 +1,4 @@
-import app from './app'
+import app from './app';
 
 const port = parseInt(process.env.APP_PORT as string) || 3000
 

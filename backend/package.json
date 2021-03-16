@@ -7,12 +7,15 @@
     "build": "rimraf ./build && tsc",
     "dev": "ts-node-dev --respawn --transpile-only --inspect -- ./src/server.ts",
     "lint": "eslint --fix --ext .js,.ts,.json .",
-    "test": "jest"
+    "test": "jest",
+    "start": "node .",
+    "dbstart": "rm -f garage-start.sqlite; node ./src/dbstart.ts"
   },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "@types/cors": "^2.8.8",
