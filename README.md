@@ -30,10 +30,10 @@ These tasks are recommended to be completed before the technical interview, so w
 
 ### Frontend
 
-- [ ] Implement a 'Detail' screen on the frontend app, following the same design principles and using the same information already provided.
+- [X] Implement a 'Detail' screen on the frontend app, following the same design principles and using the same information already provided.
 
 - [X] The images are bleeding their cells, causing the `scrollview` to scroll horizontally when it should be only vertical. Can you spot and fix this scenario?
 
 - [X] Improve main list implementation so it has better long term performance and allows for adding pagination in the future.
 
-- [ ] Add persistence to "TOGGLE STAR" functionality.
+- [X] Add persistence to "TOGGLE STAR" functionality.
