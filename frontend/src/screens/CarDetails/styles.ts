@@ -20,5 +20,8 @@ export const MainContainer = styled.SafeAreaView`
   width: ${ Dimensions.get('window').width}px;
   paddingHorizontal: ${Spacing.padding}px;
 `
+export const TitleContainer = styled.View`
+  flexDirection: row;
+`
 
 export const List = styled.FlatList``

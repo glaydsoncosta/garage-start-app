@@ -1,8 +1,9 @@
 import React from 'react'
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux'
-import { TouchableOpacity } from 'react-native'
+import { TouchableNativeFeedback, TouchableOpacity } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
 
-import { toggleStar } from '../../store/actions'
+import { toggleStar, selectCar } from '../../store/actions'
 
 import Cover from '../Cover'
 
@@ -17,9 +18,9 @@ import {
 } from './styles'
 
 export interface CarProps {
-  id: string
+  id: number
   model: string
-  make: string
+  maker: string
   year: string
   coverURL: string
   starred?: boolean
@@ -28,29 +29,41 @@ export interface CarProps {
 const CardListItem: React.FC<CarProps> = (car: CarProps) => {
   const star = useSelector<RootStateOrAny>((state) => {
     return state.star.starred[car.id]
-  })
+  });
+  const navigation = useNavigation();
   const dispatch = useDispatch()
 
   const _toggleStar = () => {
     dispatch(toggleStar(car.id))
   }
 
+  const _selectCar = () => {
+    dispatch(selectCar(car.id));
+    _showCarDetails();
+  }
+
+  const _showCarDetails = () => {
+    navigation.navigate('CarDetails');
+  }
+
   return (
-    <Card>
-      <Cover source={car.coverURL} />
-      <Details>
-        <Header>
-          <Model>{car.model}</Model>
-          <TouchableOpacity onPress={() => _toggleStar()}>
-            <StarIcon star={star} />
-          </TouchableOpacity>
-        </Header>
-        <Line />
-        <MakeYear>
-          {car.make} | {car.year}
-        </MakeYear>
-      </Details>
-    </Card>
+    <TouchableNativeFeedback onPress={() => _selectCar()}>
+      <Card>
+        <Cover source={car.coverURL} />
+        <Details>
+          <Header>
+            <Model>{car.model}</Model>
+            <TouchableOpacity onPress={() => _toggleStar()}>
+              <StarIcon star={star} />
+            </TouchableOpacity>
+          </Header>
+          <Line />
+          <MakeYear>
+            {car.maker} | {car.year}
+          </MakeYear>
+        </Details>
+      </Card>      
+    </TouchableNativeFeedback>
   )
 }
 

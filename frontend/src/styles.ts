@@ -10,7 +10,7 @@ export const Colors = {
 }
 
 export const Spacing = {
-  padding: 15,
+  padding: 10,
   extraMargin: 10
 }
 

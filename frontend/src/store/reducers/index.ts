@@ -2,12 +2,17 @@ import { combineReducers } from 'redux'
 
 export interface Stars {
   starred: {
-    [key: string]: boolean
+    [key: number]: boolean
   }
 }
 
+export interface Cars {
+  car: {}
+}
+
 const initState = {
-  starred: {}
+  starred: {},
+  car: {}
 }
 
 const star = (state : Stars = initState, action : any) => {
@@ -25,4 +30,16 @@ const star = (state : Stars = initState, action : any) => {
   }
 }
 
-export default combineReducers({ star })
+const car = (state : Cars = initState, action : any) => {
+  switch (action.type) {
+    case 'SELECT_CAR':
+      return {
+        ...state,
+        id: action.id
+      }
+    default:
+      return state
+  }
+}
+
+export default combineReducers({ star, car })
