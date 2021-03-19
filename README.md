@@ -19,6 +19,7 @@ These tasks are recommended to be completed before the technical interview, so w
 - [X] Implement a relational DataBase (use SQLite for simplicity), with two entities, one for Makers and another for Cars. Use the same fields as provided by `cars.json` file. Each Maker can have several Cars.
 
 - [ ] Consider implementing a resizing and cache system for served images. What approach would you take? What libraries or services? There's no need to implement it fully, but an example or a simple implementation will be appreciated.
+    - Obs: I didn't have enought time to implement it, but I would probably use "React Native Image Cache" which is very simple and works in such a way that the images (until they change, for example, when URI changes) can be stored inside the device local storage.
 
 - [X] Images on `assets` folder are not being returned by the server. Can you spot what is missing?
 
