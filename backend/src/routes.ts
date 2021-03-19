@@ -87,9 +87,9 @@ router.get('/car/:id', (req, res, next) => {
 })
 
 // Star/Unstar single car
-router.post('/car/:id/star/:starred', (req, res, next) => {
-  var sqlQuery = 'update cars set starred = ? where cars.id = ?';
-  var params = [req.params.starred, req.params.id];
+router.post('/car/:id/star', (req, res, next) => {
+  var sqlQuery = 'update cars set starred = NOT starred where cars.id = ?';
+  var params = [req.params.id];
   executeSQLQuery(sqlQuery, params)
     .then(dbResult => {
       // "Success" is only true when we find a record

@@ -7,3 +7,9 @@ export const getCar = async (id: number) => {
   const response = await fetch('http://localhost:3000/car/{car_id}'.replace('{car_id}', id.toString()))
   return response.json()
 }
+
+export const starUnstarCar = async (id: number) => {
+  const response = await fetch('http://localhost:3000/car/{car_id}/star'.replace('{car_id}', id.toString()), { method: "POST"});
+  return response.json()
+}
+

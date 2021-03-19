@@ -10,11 +10,14 @@ import { useNavigation } from '@react-navigation/native'
 const CarDetails = () => {
   const [data, setData] = useState([]);
   const navigation = useNavigation();
-  const car = useSelector<RootStateOrAny>((state) => {
-    return state.car;
+  const car: any = useSelector<RootStateOrAny>((state) => {
+    return state.car.car;
   });
+  const star = useSelector<RootStateOrAny>((state) => {
+    return state.star.starred[car.id]
+  });  
 
-  const showCarInfo = (car) => {
+  const showCarInfo = () => {
     return (
      <View>
         <CardListItem
@@ -22,8 +25,8 @@ const CarDetails = () => {
               model={car.model}
               maker={car.maker}
               year={car.year}
-              starred={true}
-              coverURL={car.image_url == null ? undefined : car.image_url}
+              starred={car.starred}
+              coverURL={car.coverURL == null ? undefined : car.coverURL}
             />
             <Space />       
      </View>
@@ -32,8 +35,10 @@ const CarDetails = () => {
 
   useEffect(() => {
     const updateData = async () => {
-      const res = await getCar(car.id)
-      setData(res.data[0])
+      if (car.car !== undefined) {
+        const res = await getCar(car.car.id)
+        setData(res.data[0])
+      }
     }
     updateData()
   }, [])
@@ -44,7 +49,7 @@ const CarDetails = () => {
         <BackButton onPress={() => navigation.goBack()}/>
         <Title>Car Details</Title>
       </TitleContainer>
-      {showCarInfo(data)}
+      {showCarInfo()}
     </MainContainer>
   )
 }

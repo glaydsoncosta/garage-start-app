@@ -23,7 +23,7 @@ describe('jest', () => {
   });
   
   it('API should MARK as starred car with ID = 10', async done => {
-    const response = await request.post('/car/10/star/1');
+    const response = await request.post('/car/10/star');
     expect(response.status).toBe(200)
     expect(response.body.success).toBe(true);
     done();
@@ -37,7 +37,7 @@ describe('jest', () => {
   });  
 
   it('API should MARK as unstarred car with ID = 10', async done => {
-    const response = await request.post('/car/10/star/0');
+    const response = await request.post('/car/10/star');
     expect(response.status).toBe(200)
     expect(response.body.success).toBe(true);
     done();

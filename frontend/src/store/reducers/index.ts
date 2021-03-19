@@ -25,6 +25,14 @@ const star = (state : Stars = initState, action : any) => {
           [action.id]: !state.starred[action.id]
         }
       }
+      case 'SET_STARRED':
+        return {
+          ...state,
+          starred: {
+            ...state.starred,
+            [action.id]: true
+          }
+        }      
     default:
       return state
   }
@@ -35,7 +43,7 @@ const car = (state : Cars = initState, action : any) => {
     case 'SELECT_CAR':
       return {
         ...state,
-        id: action.id
+        car: action.car
       }
     default:
       return state

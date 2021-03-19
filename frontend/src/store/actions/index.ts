@@ -1,3 +1,4 @@
 export const toggleStar = (id : number) => ({ id, type: 'TOGGLE_STAR' });
-export const selectCar = (id : number) => ({ id, type: 'SELECT_CAR' });
+export const setStar = (id : number) => ({ id, type: 'SET_STARRED' });
+export const selectCar = (car : any) => ({ car, type: 'SELECT_CAR' });
 

@@ -3,10 +3,13 @@ import { ScrollView, View, SafeAreaView, FlatList, Dimensions } from 'react-nati
 import { getList } from '../../services/api'
 import CardListItem from '../../components/CardListItem'
 import { Space, Title, MainContainer } from './styles'
+import { useDispatch } from 'react-redux';
+import { toggleStar, setStar } from '../../store/actions'
 
 const Garage = () => {
   const [data, setData] = useState([]);
   const renderItemCall = useCallback(({ item, index }) => renderItem({ item, index }));
+  const dispatch = useDispatch();
 
   const renderItem = ({ item, index }) => {
     return (
@@ -16,7 +19,7 @@ const Garage = () => {
               model={item.model}
               maker={item.maker}
               year={item.year}
-              starred={true}
+              starred={item.starred === 1 ? true : false}
               coverURL={item.image_url == null ? undefined : item.image_url}
             />
             <Space />       
@@ -26,8 +29,8 @@ const Garage = () => {
 
   useEffect(() => {
     const updateData = async () => {
-      const res = await getList()
-      setData(res.data)
+      const res = await getList();
+      setData(res.data);
     }
     updateData()
   }, [])
